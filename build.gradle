@@ -12,6 +12,7 @@ buildscript {
 plugins {
 	id 'java-library'
 	id 'org.jetbrains.kotlin.jvm' version '1.3.21'
+	id 'org.jetbrains.kotlin.plugin.spring' version '1.3.21'
 	id 'org.jmailen.kotlinter' version '1.21.0'
 	id 'io.gitlab.arturbosch.detekt' version '1.0.0-RC14'
 	id 'jacoco'
@@ -46,10 +47,12 @@ repositories {
 dependencies {
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
 	implementation 'com.willowtreeapps.assertk:assertk-jvm:0.13' // https://www.kotlinresources.com/library/assertk/
+	implementation 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8'
 	implementation 'com.jayway.jsonpath:json-path:2.4.0'
 
 	// test
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	testImplementation 'org.jetbrains.kotlin:kotlin-reflect'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.0.8.RELEASE'
 	testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
 
 	// build
