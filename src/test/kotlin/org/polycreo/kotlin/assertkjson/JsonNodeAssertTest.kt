@@ -13,8 +13,8 @@ import assertk.assertions.isNotEmpty
 import assertk.assertions.isTrue
 import assertk.assertions.size
 import com.fasterxml.jackson.databind.node.TextNode
-import org.junit.Test
 import java.math.BigInteger
+import org.junit.Test
 
 class JsonNodeAssertTest {
 
