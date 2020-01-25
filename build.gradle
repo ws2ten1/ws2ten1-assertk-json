@@ -1,32 +1,26 @@
 // ================
 // Gradle configuration
 
-buildscript {
-	repositories {
-		jcenter()
-		mavenCentral()
-		maven { url "https://plugins.gradle.org/m2/" }
-	}
-}
-
 plugins {
 	id 'java-library'
+	id 'maven-publish'
+	id 'com.jfrog.bintray' version '1.8.4'
 	id 'org.jetbrains.kotlin.jvm' version '1.3.21'
 	id 'org.jetbrains.kotlin.plugin.spring' version '1.3.21'
+
+	// https://github.com/palantir/gradle-git-version
+	id 'com.palantir.git-version' version '0.12.2'
+
+	// code quality plugins
+	id 'jacoco'
 	id 'org.jmailen.kotlinter' version '1.21.0'
 	id 'io.gitlab.arturbosch.detekt' version '1.0.0-RC14'
-	id 'jacoco'
 	id 'org.jetbrains.dokka' version '0.9.17'
-	id 'com.jfrog.bintray' version '1.8.4'
-	id 'maven-publish'
+
 }
 
-apply from: "${rootProject.projectDir}/gradle/version.gradle"
-apply from: "${rootProject.projectDir}/gradle/sourceArtifact.gradle"
-apply from: "${rootProject.projectDir}/gradle/bintray.gradle"
-
 wrapper {
-	gradleVersion = '5.2.1'
+	gradleVersion = '6.0.1'
 	distributionType = Wrapper.DistributionType.ALL
 }
 
@@ -34,9 +28,26 @@ wrapper {
 // Project metadata configuration
 
 group = 'org.polycreo'
+version = gitVersion()
 
 // ================
 // Build configuration
+
+compileKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ['-Xjsr305=strict']
+		jvmTarget = '1.8'
+		allWarningsAsErrors = true
+	}
+}
+
+compileTestKotlin {
+	kotlinOptions {
+		freeCompilerArgs = ['-Xjsr305=strict']
+		jvmTarget = '1.8'
+		allWarningsAsErrors = true
+	}
+}
 
 repositories {
 	jcenter()
@@ -59,24 +70,8 @@ dependencies {
 	detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0-RC14"
 }
 
-compileKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ['-Xjsr305=strict']
-		jvmTarget = '1.8'
-		allWarningsAsErrors = true
-	}
-}
-
-compileTestKotlin {
-	kotlinOptions {
-		freeCompilerArgs = ['-Xjsr305=strict']
-		jvmTarget = '1.8'
-		allWarningsAsErrors = true
-	}
-}
-
 // ================
-// Lint configuration
+// Lint / Test configuration
 
 detekt {
 	toolVersion = '1.0.0-RC14'
@@ -84,13 +79,10 @@ detekt {
 	filters = ".*/resources/.*,.*/build/.*"
 	//baseline = file("my-detekt-baseline.xml")
 	reports {
-		xml.enabled = true
 		html.enabled = true
+		xml.enabled = true
 	}
 }
-
-// ================
-// Test configuration
 
 jacocoTestReport {
     reports {
@@ -110,3 +102,9 @@ tasks.withType(Test) {
 		logger.lifecycle("{} > {}", it.parent.name, it.name)
 	}
 }
+
+// ================
+// Deploy configuration
+
+apply from: "${rootProject.projectDir}/gradle/sourceArtifact.gradle"
+apply from: "${rootProject.projectDir}/gradle/publish.gradle"
