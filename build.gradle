@@ -14,7 +14,7 @@ plugins {
 	// code quality plugins
 	id 'jacoco'
 	id 'org.jmailen.kotlinter' version '1.21.0'
-	id 'io.gitlab.arturbosch.detekt' version '1.0.0-RC14'
+	id 'io.gitlab.arturbosch.detekt' version '1.4.0'
 	id 'org.jetbrains.dokka' version '0.9.17'
 
 }
@@ -67,17 +67,14 @@ dependencies {
 	testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
 
 	// build
-	detektPlugins "io.gitlab.arturbosch.detekt:detekt-formatting:1.0.0-RC14"
+	detektPlugins 'io.gitlab.arturbosch.detekt:detekt-formatting:1.4.0'
 }
 
 // ================
 // Lint / Test configuration
 
 detekt {
-	toolVersion = '1.0.0-RC14'
-	input = files("src/main/kotlin")
-	filters = ".*/resources/.*,.*/build/.*"
-	//baseline = file("my-detekt-baseline.xml")
+	failFast = true
 	reports {
 		html.enabled = true
 		xml.enabled = true
