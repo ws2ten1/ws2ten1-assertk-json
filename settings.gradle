@@ -3,4 +3,4 @@ pluginManagement {
 		gradlePluginPortal()
 	}
 }
-rootProject.name = 'ws2ten1-assertk-json'
+rootProject.name = 'polycreo-assertk-json'

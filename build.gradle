@@ -33,7 +33,7 @@ wrapper {
 // ================
 // Project metadata configuration
 
-group = 'org.ws2ten1'
+group = 'org.polycreo'
 
 // ================
 // Build configuration
@@ -41,7 +41,7 @@ group = 'org.ws2ten1'
 repositories {
 	jcenter()
 	mavenCentral()
-	maven { url 'https://dl.bintray.com/ws2ten1/maven-release' }
+	maven { url 'https://dl.bintray.com/polycreo/maven' }
 }
 
 dependencies {

@@ -1,4 +1,4 @@
-package org.ws2ten1.kotlin.assertkjson
+package org.polycreo.kotlin.assertkjson
 
 import assertk.all
 import assertk.assertThat
