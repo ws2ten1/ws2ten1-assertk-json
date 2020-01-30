@@ -58,7 +58,7 @@ repositories {
 dependencies {
 	api 'com.fasterxml.jackson.module:jackson-module-kotlin:2.9.8'
 	implementation 'org.jetbrains.kotlin:kotlin-stdlib-jdk8'
-	implementation 'com.willowtreeapps.assertk:assertk-jvm:0.13' // https://www.kotlinresources.com/library/assertk/
+	implementation 'com.willowtreeapps.assertk:assertk-jvm:0.21' // https://www.kotlinresources.com/library/assertk/
 	implementation 'com.jayway.jsonpath:json-path:2.4.0'
 
 	// test
