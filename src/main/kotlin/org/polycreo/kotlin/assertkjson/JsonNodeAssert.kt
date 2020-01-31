@@ -1,3 +1,4 @@
+@file:Suppress("TooManyFunctions")
 package org.polycreo.kotlin.assertkjson
 
 import assertk.Assert
