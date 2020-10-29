@@ -63,7 +63,7 @@ dependencies {
 
 	// test
 	testImplementation 'org.jetbrains.kotlin:kotlin-reflect'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.2.4.RELEASE'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test:2.3.5.RELEASE'
 	testImplementation 'com.nhaarman:mockito-kotlin:1.6.0'
 
 	// build
